@@ -30,7 +30,7 @@ If you don't specify a task, the script runs all of these in sequence.
   # OPTIONAL: copy headers files to main directory (must be manually run)
   copy_headers)
     echo "=== Adding header files to root directory"
-    cp -a /data/headers/. /~
+    cp -a data/headers/*.sql .
   ;;
 
   # ALL: main tasks (run by default)
