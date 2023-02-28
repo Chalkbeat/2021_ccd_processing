@@ -6,17 +6,18 @@ task=${1:-all}
 case $task in
   help)
     echo """Tasks you can run with this script:
-  - database: downloads shapefiles and (re)creates the PostGIS DB
-  - intersections: matches blockgroups to geodata
-  - import: runs all census data imports
-  - districts: runs analysis and outputs district-level census data
-  - cps: runs analysis and outputs attendance boundary-level census data
+  - create_schema: uses csvkit to guess SQL titles and dtypes. likely requires typing revisions.
+  - copy_headers: moves files from header folder to main (you might not want to use this if you're manually editing the table import files)
+  - database: creates psql DB
+  - import: runs all common core data imports
+  - filter: limits school-level data to in-scope states
+  - combine: adds district IDs and other characteristics to school-level data
 If you don't specify a task, the script runs all of these in sequence.
     """
   ;;
 
-  # OPTIONAL: generate createtable from headers (must be manually run)
-  headers)
+  # HEADERS: generate createtable from headers (must be manually run)
+  headers | create_schema)
     echo "=== Pulling headers to create schemas"
     pushd data
     mkdir -p headers
@@ -25,10 +26,9 @@ If you don't specify a task, the script runs all of these in sequence.
         head -n 20 $csv | csvsql --no-constraints --tables $table > headers/$table.sql;
     done
     popd
-  ;;
+  ;;&
 
-  # OPTIONAL: copy headers files to main directory (must be manually run)
-  copy_headers)
+  headers | copy_headers)
     echo "=== Adding header files to root directory"
     cp -a data/headers/*.sql .
   ;;

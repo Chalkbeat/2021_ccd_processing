@@ -51,7 +51,8 @@ CREATE TABLE ccd_gender AS (
         , SUM(STUDENT_COUNT) AS HS_ENRL
     FROM add_name
 
-    WHERE SEX IN ('Male','Female','Not Specified')
+    WHERE 1=1
+    AND SEX IN ('Male','Female','Not Specified')
 
     GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
 );

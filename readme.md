@@ -1,6 +1,18 @@
+Common Core Data processing pipeline
+====================================
+
+Prerequisites
+-------------
+
+* Bash v4 or higher
+* Postgres installed and runnable as the current user
+
+Instructions
+------------
+
 # To run
 
-Use `./runme.sh` on command line.
+Execute ``./runme.sh`` to step through the various scripts. That file is also commented, so you can see the individual processing steps and re-run them once the pipeline is initialized.
 
 # Troubleshooting
 
