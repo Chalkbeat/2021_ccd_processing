@@ -5,6 +5,7 @@ Prerequisites
 -------------
 
 * Bash v4 or higher
+* [csvkit](https://csvkit.readthedocs.io/en/latest/tutorial/1_getting_started.html#installing-csvkit)
 * Postgres installed and runnable as the current user
 
 Instructions
