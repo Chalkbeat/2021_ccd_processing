@@ -15,10 +15,35 @@ If you don't specify a task, the script runs all of these in sequence.
     """
   ;;
 
+  # OPTIONAL: generate createtable from headers (must be manually run)
+  headers)
+    echo "=== Pulling headers to create schemas"
+    pushd data
+    mkdir -p headers
+    for csv in *.csv; do
+        table="import_${csv%.csv}"
+        head -n 20 $csv | csvsql --no-constraints --tables $table > headers/$table.sql;
+    done
+    popd
+  ;;
+
+  # OPTIONAL: copy headers files to main directory (must be manually run)
+  copy_headers)
+    echo "=== Adding header files to root directory"
+    cp -a /data/headers/. /~
+  ;;
+
+  # ALL: main tasks (run by default)
   all | database)
     echo "=== Creating and populating database..."
     dropdb ccd_stats
     createdb ccd_stats
+  ;;&
+
+  # create folders
+  all | folders)
+    echo "=== Creating file structure"
+    mkdir -p output
   ;;&
 
   # load data
