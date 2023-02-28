@@ -2,17 +2,18 @@
 
 task=${1:-all}
 
-# download/unpack shapefiles and upload into PostGIS
 case $task in
   help)
     echo """Tasks you can run with this script:
-  - create_schema: uses csvkit to guess SQL titles and dtypes. likely requires typing revisions.
-  - copy_headers: moves files from header folder to main (you might not want to use this if you're manually editing the table import files)
+ Optional:
+  - create_schema: uses csvkit to guess SQL titles and dtypes as a create table statement
+  - copy_headers: copies csvkit suggested import method from header folder to main 
+ Default:
   - database: creates psql DB
   - import: runs all common core data imports
   - filter: limits school-level data to in-scope states
   - combine: adds district IDs and other characteristics to school-level data
-If you don't specify a task, the script runs all of these in sequence.
+If you don't specify a task, the script runs all of the default tasks in sequence. Optional tasks must be run manually.
     """
   ;;
 
