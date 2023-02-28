@@ -5,7 +5,7 @@ Prerequisites
 -------------
 
 * Bash v4 or higher
-* [csvkit](https://csvkit.readthedocs.io/en/latest/tutorial/1_getting_started.html#installing-csvkit)
+* [csvkit](https://csvkit.readthedocs.io/en/latest/tutorial/1_getting_started.html#installing-csvkit) is necessary to run the optional tasks for generating schemas from csv headers, but the main task sequence will run without it
 * Postgres installed and runnable as the current user
 
 Instructions
