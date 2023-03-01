@@ -7,6 +7,7 @@ case $task in
     echo """Tasks you can run with this script:
  Optional:
   - create_schema: uses csvkit to guess SQL titles and dtypes as a create table statement
+  - edit_schema: uses sed to change dtypes to TEXT and NUMERIC; leaves DATE
   - copy_headers: copies csvkit suggested import method from header folder to main 
  Default:
   - database: creates psql DB
@@ -23,10 +24,21 @@ If you don't specify a task, the script runs all of the default tasks in sequenc
     pushd data
     mkdir -p headers
     for csv in *.csv; do
-        table="import_${csv%.csv}"
-        head -n 20 $csv | csvsql --no-constraints --tables $table > headers/$table.sql;
+      base="${csv%.csv}"
+      file_name="import_${base,,}"
+      table_name="${base,,}"
+      echo "drop table if exists ${table_name} cascade;"$'\n' > headers/$file_name.sql;
+      head -n 500 $csv | tr "[:upper:]" "[:lower:]" | csvsql --no-constraints --tables $table_name >> headers/$file_name.sql;        
+      echo $'\n'"\copy ${table_name} from 'data/${table_name}.csv' csv header;" >> headers/$file_name.sql;
     done
     popd
+  ;;&
+
+  headers | edit_schema)
+    echo "=== Changing dtypes to TEXT, NUMERIC and DATE"
+    for file in data/headers/*.sql; do
+      sed -i '' 's/BOOLEAN/TEXT/g; s/VARCHAR/TEXT/g; s/DECIMAL/TEXT/g' $file;
+    done
   ;;&
 
   headers | copy_headers)
