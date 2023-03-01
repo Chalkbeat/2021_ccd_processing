@@ -17,6 +17,14 @@ Execute ``./runme.sh`` to step through the various scripts. That file is also co
 
 Execute a specific task as ``./runme.sh task_name``
 
+### Sample query
+
+To test import success try the following:
+
+`psql ccd_stats`
+
+`select distinct statename from districts;`
+
 ### Troubleshooting
 
 If you receive an error stating that you don't have permissions to run `runme.sh`, but your permissions indicate you should be able to run the file, check whether the file is executable.
