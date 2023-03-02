@@ -37,7 +37,7 @@ If you don't specify a task, the script runs all of the default tasks in sequenc
   headers | edit_schema)
     echo "=== Changing dtypes to TEXT, NUMERIC and DATE"
     for file in data/headers/*.sql; do
-      sed -i '' 's/BOOLEAN/TEXT/g; s/VARCHAR/TEXT/g; s/DECIMAL/TEXT/g' $file;
+      sed 's/BOOLEAN/TEXT/g; s/VARCHAR/TEXT/g; s/DECIMAL/TEXT/g' $file > $file.tmp; mv $file.tmp $file;
     done
   ;;&
 
