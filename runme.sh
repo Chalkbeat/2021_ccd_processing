@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo $BASH_VERSION;
 task=${1:-all}
 
 case $task in

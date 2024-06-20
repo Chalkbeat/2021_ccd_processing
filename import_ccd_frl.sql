@@ -1,6 +1,6 @@
-drop table if exists ccd_main cascade;
+drop table if exists ccd_frl cascade;
 
-create table ccd_main (
+CREATE TABLE ccd_frl (
 	SCHOOL_YEAR TEXT, 
 	FIPST TEXT, 
 	STATENAME TEXT, 
@@ -13,12 +13,11 @@ create table ccd_main (
 	ST_SCHID TEXT, 
 	NCESSCH TEXT, 
 	SCHID TEXT, 
-	GRADE TEXT, 
-	RACE_ETHNICITY TEXT, 
-	SEX TEXT, 
+	DATA_GROUP TEXT, 
+	LUNCH_PROGRAM TEXT, 
 	STUDENT_COUNT NUMERIC, 
 	TOTAL_INDICATOR TEXT, 
 	DMS_FLAG TEXT
 );
 
-\copy ccd_main from 'data/main.csv' csv header;
+\copy ccd_frl from 'data/frl.csv' csv header;

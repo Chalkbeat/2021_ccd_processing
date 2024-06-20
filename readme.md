@@ -13,14 +13,24 @@ Data Sources
 
 This is a simplified workflow to import and join enrollment school-level Common Core Data to district-level directory attributes. 
 
-It uses:
-* Public Elementary/Secondary School Universe Survey Data, (v.1a) for the 2021 - 2022 school year
+`main` branch uses:
+* Public Elementary/Secondary School Universe Survey Data, (v.1a) for the 2021 - 2022 school years
     - Membership (school-level enrollment)
+* Local Education Agency (School District) Universe Survey Data, (v.1a)
     - Directory (school-level directory that contains fuller district associations)
 
-This data is accessible on the NCES website's [CCD Data Files bulk downloader](https://nces.ed.gov/ccd/files.asp#Fiscal:2,LevelId:7,SchoolYearId:36,Page:1), under the nonfiscal -> school -> 2021-22 selection in the search menu.
+`frl` branch uses:
+* Public Elementary/Secondary School Universe Survey Data, (v.1a) for the 2022 - 2023 school years
+    - Membership (school-level enrollment)
+* Local Education Agency (School District) Universe Survey Data, (v.1a)
+    - Directory (school-level directory that contains fuller district associations)
+* Provisional Common Core of Data  - Free and Reduced Lunch, for the 2022 - 2023 school year
+
+This data is accessible on the NCES website's [CCD Data Files bulk downloader](https://nces.ed.gov/ccd/files.asp#Fiscal:2,LevelId:7,SchoolYearId:36,Page:1), under the nonfiscal -> school OR district -> 2021-22 OR 2022-23 selection in the search menu.
 
 The header extraction and import processes are easily adaptable to additional Common Core Datasets, but you'll have to write fresh filter and join files if you want to incorporate new datasets.
+
+The CCD schemas are fairly consistent for past years of Membership and Directory files.
 
 Instructions
 ------------
@@ -37,7 +47,7 @@ To test import success try the following:
 
 `psql ccd_stats`
 
-`select distinct statename from districts;`
+`select distinct statename from ccd_directory;`
 
 ### Troubleshooting
 
