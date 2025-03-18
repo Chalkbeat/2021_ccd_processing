@@ -6,7 +6,7 @@ create table ccd_states AS (
     FROM ccd_main
 
     WHERE 1=1
-    AND ST IN ('CA','FL','NY','IL','NV')
+    AND ST IN ('CA','FL','NY','IL','NV','PA')
     AND GRADE IN ('Grade 9','Grade 10','Grade 11','Grade 12')
 );
 

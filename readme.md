@@ -16,7 +16,7 @@ This is a simplified workflow to import and join enrollment school-level Common 
 It uses:
 * Public Elementary/Secondary School Universe Survey Data, (v.1a) for the 2021 - 2022 school year
     - Membership (school-level enrollment)
-    - Directory (school-level directory that contains fuller district associations)
+    - Directory (district-level directory that contains fuller district associations)
 
 This data is accessible on the NCES website's [CCD Data Files bulk downloader](https://nces.ed.gov/ccd/files.asp#Fiscal:2,LevelId:7,SchoolYearId:36,Page:1), under the nonfiscal -> school -> 2021-22 selection in the search menu.
 
